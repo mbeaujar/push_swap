@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:26:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/03 22:10:32 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/03/07 15:01:42 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,49 @@ int check_instructions(char *str, t_stack **a, t_stack **b)
     if (strcmp(str, "pb") == 0)
         pb(a, b, &check);
     if (strcmp(str, "ra") == 0)
-        ra();
+        ra(a, &check);
     if (strcmp(str, "rb") == 0)
-        rb();
+        rb(b, &check);
     if (strcmp(str, "rr") == 0)
-        sb();
+        rr(a, b, &check);
     if (strcmp(str, "rra") == 0)
-        sb();
+        rra(a, &check);
     if (strcmp(str, "rrb") == 0)
-        sb();
+        rrb(b, &check);
     if (strcmp(str, "rrr") == 0)
-        sb();
+        rrr(a, b, &check);
     return (check);
+}
+
+void eval(t_stack *a, t_stack *b, int note)
+{
+    if (note)
+        ft_printf("\nOK\n");
+    else
+        ft_printf("\nKO\n");
+    if (a)
+        freelist(a);
+    if (b)
+        freelist(b);
+    exit(1);
+}
+
+void check_valid(t_stack *a, t_stack *b)
+{
+    t_stack *begin;
+    
+    begin = a;
+    if (b != NULL)
+        eval(a, b, 0);
+    if (a->next == NULL)
+        eval(a, b, 1);
+    while (begin->next->next != NULL)
+    {
+        if (begin->data < begin->next->data)
+            eval(a, b, 0);
+        begin = begin->next;
+    }
+    eval(a, b, 1);
 }
 
 void read_stdin(t_stack *a)
@@ -59,9 +90,15 @@ void read_stdin(t_stack *a)
         }
         if (check_instructions(str, &a, &b) == 0)
         {
+            printf("'%s'\n", str);
             freelist(a);
             freelist(b);
             error(0);
         }
+        printf("\nstack a :\n");
+        printlist(a);
+        printf("stack b :\n");
+        printlist(b);
     }
+    check_valid(a, b);
 }

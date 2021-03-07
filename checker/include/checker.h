@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 20:35:02 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/03 22:08:51 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/03/06 22:25:42 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,18 @@ void printlist(t_stack *lst);
 void freelist(t_stack *lst);
 void error(int error);
 int lstsize(t_stack *lst);
+void read_stdin(t_stack *a);
 
 void sa(t_stack **a, int *check);
 void sb(t_stack **b, int *check);
 void ss(t_stack **a, t_stack **b, int *check);
 void pa(t_stack **a, t_stack **b, int *check);
 void pb(t_stack **a, t_stack **b, int *check);
+void ra(t_stack **a, int *check);
+void rb(t_stack **b, int *check);
+void rr(t_stack **a, t_stack **b, int *check);
+void rra(t_stack **a, int *check);
+void rrb(t_stack **b, int *check);
+void rrr(t_stack **a, t_stack **b, int *check);
 
 #endif 

@@ -1,7 +1,7 @@
 NAME = checker
 PATH_LIB = ../libft
 LIB = ft
-SRCS = main.c parsing.c
+SRCS = main.c parsing.c read_stdin.c instructions.c
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f

@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 20:34:26 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/03 21:52:35 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/03/06 22:24:00 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int main(int argc, char **argv)
     
     a = parsing(argc, argv);
     printlist(a);
+    read_stdin(a);
     freelist(a);
    // system("leaks a.out");
     return (0);

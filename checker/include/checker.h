@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 20:35:02 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/06 22:25:42 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/03/26 13:12:23 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 #include <fcntl.h>
 #include "../../libft/inc/libft.h"
 
-// sa sb ss pa pb ra rb rr rra rrb rrr
 
 typedef struct s_stack
 {

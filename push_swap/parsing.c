@@ -5,18 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/03 20:43:04 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/26 13:12:05 by mbeaujar         ###   ########.fr       */
+/*   Created: 2021/03/26 13:35:40 by mbeaujar          #+#    #+#             */
+/*   Updated: 2021/03/26 13:36:41 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/checker.h"
-
-void error(int error)
-{
-    ft_printf("Error\n");
-    exit(error);
-}
+#include "include/push_swap.h"
 
 int is_number(char *arg)
 {
@@ -31,8 +25,6 @@ int is_number(char *arg)
     }
     return (1);
 }
-
-//  + passer en long long et check overflow positif et negatif
 
 void error_free(int error, t_stack *begin)
 {

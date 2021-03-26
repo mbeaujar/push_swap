@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:26:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/07 15:01:42 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/03/26 13:10:51 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int check_instructions(char *str, t_stack **a, t_stack **b)
 void eval(t_stack *a, t_stack *b, int note)
 {
     if (note)
-        ft_printf("\nOK\n");
+        ft_printf("OK\n");
     else
-        ft_printf("\nKO\n");
+        ft_printf("KO\n");
     if (a)
         freelist(a);
     if (b)
@@ -86,19 +86,20 @@ void read_stdin(t_stack *a)
         if ((ret = get_next_line(0, &str)) == -1)
         {
             freelist(a);
+            if (b)
+                freelist(b);
             error(1);
         }
-        if (check_instructions(str, &a, &b) == 0)
+        if (ret && check_instructions(str, &a, &b) == 0)
         {
-            printf("'%s'\n", str);
             freelist(a);
             freelist(b);
             error(0);
         }
-        printf("\nstack a :\n");
-        printlist(a);
-        printf("stack b :\n");
-        printlist(b);
+        //printf("\nstack a :\n");
+        //printlist(a);
+        //printf("stack b :\n");
+        //printlist(b);
     }
     check_valid(a, b);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   linked_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/03 20:34:26 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/26 13:37:17 by mbeaujar         ###   ########.fr       */
+/*   Created: 2021/03/26 13:27:20 by mbeaujar          #+#    #+#             */
+/*   Updated: 2021/03/26 14:20:10 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/checker.h"
+#include "include/push_swap.h"
 
 t_stack *lstnew(int data)
 {
@@ -20,22 +20,14 @@ t_stack *lstnew(int data)
         return (NULL);
     cell->data = data;
     cell->next = NULL;
+    cell->previous = NULL;
     return (cell);
-}
-
-void lstadd_front(t_stack **alst, t_stack *neww)
-{
-    t_stack *cell;
-
-    cell = *alst;
-    neww->next = cell;
-    *alst = neww;
 }
 
 int lstsize(t_stack *lst)
 {
     int i;
-    
+
     i = 0;
     while (lst)
     {
@@ -43,6 +35,28 @@ int lstsize(t_stack *lst)
         i++;
     }
     return (i);
+}
+
+void freelist(t_stack *lst)
+{
+    t_stack *tmp;
+
+    while (lst)
+    {
+        tmp = lst;
+        lst = lst->next;
+        free(tmp);
+    }
+}
+
+void lstadd_front(t_stack **lst, t_stack *new)
+{
+    t_stack *cell;
+    
+    cell = *lst;
+    new->next = cell;
+    cell->previous = new;
+    *lst = new;   
 }
 
 void printlist(t_stack *lst)
@@ -54,28 +68,4 @@ void printlist(t_stack *lst)
         lst = lst->next;
     }
     ft_printf("NULL | sommet\n");
-}
-
-void freelist(t_stack *lst)
-{
-    t_stack *tmp;
-    
-    while (lst)
-    {
-        tmp = lst;
-        lst = lst->next;
-        free(tmp);
-    }
-}
-
-int main(int argc, char **argv)
-{
-    t_stack *a;
-    
-    a = parsing(argc, argv);
-    //printlist(a);
-    read_stdin(a);
-    freelist(a);
-   // system("leaks a.out");
-    return (0);
 }

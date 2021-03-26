@@ -1,18 +1,10 @@
-NAME = checker
+NAME = push_swap
 PATH_LIB = ../libft
 LIB = ft
-SRCS = main.c parsing.c read_stdin.c instructions.c
+SRCS = parsing.c main.c linked_list.c instructions.c
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 RM = rm -f
-#if [ -f ../libft/libft.a ]
-#then
-#	make -C ../libft/libft.a
-#fi
-
-#ifeq ("$(wildcard $(../libft/libft.a))","")
-#	make -C ../libft
-#endif
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:27:20 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/26 14:20:10 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/03/28 16:02:46 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_stack *lstnew(int data)
     cell->data = data;
     cell->next = NULL;
     cell->previous = NULL;
+    cell->limit = 0;
     return (cell);
 }
 
@@ -59,9 +60,9 @@ void lstadd_front(t_stack **lst, t_stack *new)
     *lst = new;   
 }
 
-void printlist(t_stack *lst)
+void printlist(t_stack *lst, char pile)
 {
-    ft_printf("base | ");
+    ft_printf("| %c base | ", pile);
     while (lst)
     {
         ft_printf("%d -> ", lst->data);

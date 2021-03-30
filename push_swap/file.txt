@@ -1,0 +1,7 @@
+min : 0 max : 2
+|---------------------------------------------|
+| A base | 0 -> 1 -> 2 -> NULL | sommet
+| B base | NULL | sommet
+| A -- Head : 0 Queue 2
+sa
+rra

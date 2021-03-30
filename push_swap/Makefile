@@ -1,7 +1,7 @@
 NAME = push_swap
 PATH_LIB = ../libft
 LIB = ft
-SRCS = parsing.c main.c linked_list.c instructions.c search_middle.c fill_stack.c sorting.c sorting_a.c sorting_b.c
+SRCS = parsing.c main.c linked_list.c instructions.c init_order.c init_keep.c
 CC = clang
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 RM = rm -f

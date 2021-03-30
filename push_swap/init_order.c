@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 13:26:39 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/28 19:40:35 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/03/30 16:17:46 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void lstcpy(int *sorted, t_stack *a)
     
     i = 0;
     while (a)
-    {
-        sorted[i] = a->data;
-        a = a->next;
-        i++;
-    }
+	{
+		sorted[i] = a->data;
+		a = a->next;
+		i++;
+	}
 }
 
 void sorting_tab(int *sorted, int len)
@@ -38,7 +38,7 @@ void sorting_tab(int *sorted, int len)
         i = 0;
         while (i < len - 1)
         {
-            if (sorted[i] < sorted[i + 1])
+            if (sorted[i] > sorted[i + 1])
             {
                 tmp = sorted[i];
                 sorted[i] = sorted[i + 1];
@@ -50,23 +50,54 @@ void sorting_tab(int *sorted, int len)
     }
 }
 
-int value_mid(t_var *var)
+void set_index(t_stack *a, int *sorted)
+{
+	int i;
+
+	while (a)
+	{
+		i = 0;
+		while (sorted[i] != a->data)
+			i++;
+		a->index = i;
+		a = a->next;
+	}
+}
+
+void listprint(t_stack *a)
+{
+	while (a)
+	{
+		printf("data : %d pos : %d\n", a->data, a->index);
+		a = a->next;
+	}
+}
+
+void printtab(int *tab, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		printf("%d : %d\n", i, tab[i]);
+		i++;
+	}
+	
+}
+
+void init_order(t_var *var)
 {
     int *sorted;
     int len;
     
     len = lstsize(var->a);
     if (!(sorted = malloc(sizeof(int) * len)))
-        return (-1);
+        return;
     lstcpy(sorted, var->a);
     sorting_tab(sorted, len);
-    var->max = sorted[0];
-    var->min = sorted[len - 1];
-    ft_printf("min : %d max : %d\n", var->min ,var->max);
-    if (len % 2 == 0) 
-        len = sorted[(len / 2) - 1];
-    else
-        len = sorted[len / 2];
+	//printtab(sorted, len);
+	set_index(var->a, sorted);
+	//listprint(var->a);
     free(sorted);
-    return (len);
 }

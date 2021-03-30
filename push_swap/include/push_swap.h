@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:37 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/28 18:20:41 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/03/30 16:17:02 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef struct s_stack
 	int data;
 	struct s_stack *next;
 	struct s_stack *previous;
-	int limit;
+	int index;
+	int keep;
 }	t_stack;
 
 typedef struct s_var
@@ -34,23 +35,6 @@ typedef struct s_var
 	t_stack *b;
 	t_stack *e_a;
 	t_stack *e_b;
-	int dir_a;
-	int dir_b;
-	int mid;
-	int min;
-	int max;
-	int sa;
-	int sb;
-	int ss;
-	int pa;
-	int pb;
-	int ra;
-	int rb;
-	int rr;
-	int rra;
-	int rrb;
-	int rrr;
-
 }	t_var;
 
 void error(int error);
@@ -72,14 +56,9 @@ void rr(t_var *var);
 void rra(t_var *var);
 void rrb(t_var *var);
 void rrr(t_var *var);
-int value_mid(t_var *var);
-void fill_stack(t_var *var);
-void init_ope(t_var *var);
+void init_order(t_var *var);
 void printstack(t_var *var);
+void init_keep(t_var *var);
 
-
-void sorting(t_var *var);
-void sorting_a(t_var *var);
-void sorting_b(t_var *var);
 
 #endif 

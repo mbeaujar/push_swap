@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:27:20 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/28 16:02:46 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/03/30 16:11:54 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_stack *lstnew(int data)
     cell->data = data;
     cell->next = NULL;
     cell->previous = NULL;
-    cell->limit = 0;
+	cell->index = 0;
+	cell->keep = 0;
     return (cell);
 }
 

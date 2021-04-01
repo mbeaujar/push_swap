@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:27:20 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/30 16:11:54 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/01 21:49:12 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,34 @@ t_stack *lstnew(int data)
     cell->data = data;
     cell->next = NULL;
     cell->previous = NULL;
-	cell->index = 0;
-	cell->keep = 0;
+    cell->index = 0;
+    cell->keep_in_stack = 0;
+    return (cell);
+}
+
+void listadd_back(t_ope **alst, t_ope *neww)
+{
+    t_ope *cell;
+
+    if (!*alst)
+    {
+        *alst = neww;
+        return;
+    }
+    cell = *alst;
+    while (cell->next)
+        cell = cell->next;
+    cell->next = neww;
+}
+
+t_ope *listnew(void *content)
+{
+    t_ope *cell;
+
+    if (!(cell = malloc(sizeof(t_ope) * 1)))
+        return (NULL);
+    cell->name = content;
+    cell->next = NULL;
     return (cell);
 }
 
@@ -37,6 +63,37 @@ int lstsize(t_stack *lst)
         i++;
     }
     return (i);
+}
+
+
+
+void freelists(t_var *var)
+{
+    t_stack *tmp;
+    int i;
+
+    i = 0;
+    if (var->a)
+    {
+        while (i < var->size_a - 1)
+        {
+            tmp = var->a;
+            var->a = var->a->next;
+            free(tmp);
+            i++;
+        }
+    }
+    i = 0;
+    if (var->b)
+    {
+        while (i < var->size_b - 1)
+        {
+            tmp = var->b;
+            var->b = var->b->next;
+            free(tmp);
+            i++;
+        }
+    }
 }
 
 void freelist(t_stack *lst)
@@ -54,11 +111,11 @@ void freelist(t_stack *lst)
 void lstadd_front(t_stack **lst, t_stack *new)
 {
     t_stack *cell;
-    
+
     cell = *lst;
     new->next = cell;
     cell->previous = new;
-    *lst = new;   
+    *lst = new;
 }
 
 void printlist(t_stack *lst, char pile)

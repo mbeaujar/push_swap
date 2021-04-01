@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:37 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/30 16:17:02 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/01 15:15:29 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,25 @@
 typedef struct s_stack
 {
 	int data;
+	int index;
+	int keep_in_stack;
 	struct s_stack *next;
 	struct s_stack *previous;
-	int index;
-	int keep;
 }	t_stack;
+
+typedef struct s_ope
+{
+	char *name;
+	struct s_ope *next;
+}	t_ope;
+
+typedef struct s_dir
+{
+	int a;
+	int len_a;
+	int b;
+	int len_b;
+} t_dir;
 
 typedef struct s_var
 {
@@ -35,7 +49,13 @@ typedef struct s_var
 	t_stack *b;
 	t_stack *e_a;
 	t_stack *e_b;
+	int size_a;
+	int size_b;
+	int nb_keep;
+	t_dir dir;
+	t_stack *markup_head;
 }	t_var;
+
 
 void error(int error);
 t_stack *parsing(int argc, char **argv);
@@ -44,9 +64,9 @@ void printlist(t_stack *lst, char pile);
 void freelist(t_stack *lst);
 t_stack *lstnew(int data);
 void lstadd_front(t_stack **lst, t_stack *new);
-void reset_struct(t_var *var);
 
-	void s_a_b(t_stack **end);
+void sa(t_var *var);
+void sb(t_var *var);
 void ss(t_var *var);
 void pa(t_var *var);
 void pb(t_var *var);
@@ -56,9 +76,21 @@ void rr(t_var *var);
 void rra(t_var *var);
 void rrb(t_var *var);
 void rrr(t_var *var);
-void init_order(t_var *var);
-void printstack(t_var *var);
-void init_keep(t_var *var);
 
+
+void markup_head(t_var *var, int (*markup_fct)(t_stack *, t_stack *));
+void switch_to_b(t_var *var, t_ope *cmd, int (*markup_fct)(t_stack *, t_stack *));
+void search_path(t_var *var);
+void switch_to_a(t_var *var, t_ope *cmd);
+t_ope *solve(t_var *var, int (*markup_fct)(t_stack *, t_stack *));
+int markup_greater_than(t_stack *a, t_stack *markup_head);
+int markup_index(t_stack *a, t_stack *markup_head);
+void freelists(t_var *var);
+void listadd_back(t_ope **alst, t_ope *neww);
+t_ope *listnew(void *content);
+void indexing(t_var *var);
+void printlists(t_stack *a, int size);
+void printvar(t_var *var);
+void printdir(t_dir dir);
 
 #endif 

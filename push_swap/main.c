@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/03 20:12:31 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 21:18:47 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,7 @@ void compare_resultat(t_ope *cmd_gt, t_ope *cmd_index)
 int main(int argc, char **argv)
 {
 	t_var var;
-	//t_var var_gt;
-	t_var var_index;
-	//t_ope *cmd_gt;
+	t_ope *cmd_gt;
 	t_ope *cmd_index;
 
 	if (argc == 1)
@@ -127,28 +125,16 @@ int main(int argc, char **argv)
 	var.a = parsing(argc, argv);
 	indexing(&var);
 	param_struct(&var);
-	/*var_gt = var;
-	markup_head(&var_gt, markup_greater_than);
-	cmd_gt = solve(&var_gt, markup_greater_than);*/
-	var_index = var;
-	markup_head(&var_index, markup_index);
-	cmd_index = solve(&var_index, markup_index);
-	t_ope *tmp;
-	int i = 0;
-	t_ope *cmd = cmd_index;
-	tmp = cmd;
-	cmd = cmd->next;
-	free(tmp);
-	while (cmd)
-	{
-		ft_printf("%s\n", cmd->name);
-		tmp = cmd;
-		cmd = cmd->next;
-		free(tmp);
-		i++;
-	}
-	printvar(&var_index);
-	//compare_resultat(cmd_gt, cmd_index);
+	markup_head(&var, markup_greater_than);
+	cmd_gt = solve(&var, markup_greater_than);
+	freelists(&var);
+	init_struct(&var);
+	var.a = parsing(argc, argv);
+	indexing(&var);
+	param_struct(&var);
+	markup_head(&var, markup_index);
+	cmd_index = solve(&var, markup_index);
+	compare_resultat(cmd_gt, cmd_index);
 	freelists(&var);
 	return (0);
 }

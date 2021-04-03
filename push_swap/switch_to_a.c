@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 18:24:24 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/03 20:14:31 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 20:49:44 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ void switch_to_a(t_var *var, t_ope *cmd)
     var->dir.len_b = 0;
     while (var->b)
     {
-        printvar(var);
-        ft_printf("call search_path\n");
+        //printvar(var);
+        //ft_printf("call search_path\n");
         search_path(var);
-        printvar(var);
-        printdir(var->dir);
-        ft_printf("call make_move\n");
+        //printvar(var);
+        //printdir(var->dir);
+        //ft_printf("call make_move\n");
         make_move(var, cmd);
         listadd_back(&cmd, listnew("pa"));
         pa(var);

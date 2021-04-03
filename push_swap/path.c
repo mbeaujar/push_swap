@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 18:28:45 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/03 18:50:07 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 20:49:23 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ int search_number(int *sorted, int len, int nb)
     int i;
 
     i = 0;
-    //if (nb > sorted[i] || nb < sorted[len - 1])
-    //    return (sorted[len - 1]);
+    if (nb > sorted[len - 1])
+        return (sorted[0]);
+    i = 0;
     while (i < len - 1)
     {
         if (sorted[i] > nb)
@@ -43,8 +44,15 @@ t_stack *search_pos(t_var *var, int index)
         return (NULL);
     lstcpy(sorted, var->a, var->size_a);
     sorting_tab(sorted, var->size_a);
+    /*int j = 0;
+    ft_printf("tab :");
+    while (j < var->size_a)
+    {
+        ft_printf(" %d", sorted[j]);
+        j++;
+    }*/
     nb = search_number(sorted, var->size_a, index);
-    //ft_printf("nbbbbb : %d\n", nb);
+    //ft_printf("nbbbbb : %d for index : %d\n", nb, index);
     i = 0;
     a = var->a;
     while (i < var->size_a)

@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 18:28:45 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/01 22:20:33 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 18:50:07 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,49 @@
 // x = 0 rx , 1 rrx
 // len_x = length
 
-int ascend(t_stack *a, int size)
+
+int search_number(int *sorted, int len, int nb)
 {
     int i;
-    int count;
 
     i = 0;
-    count = 0;
-    while (i < size)
+    //if (nb > sorted[i] || nb < sorted[len - 1])
+    //    return (sorted[len - 1]);
+    while (i < len - 1)
     {
-        if (a->data < a->next->data)
-            count++;
+        if (sorted[i] > nb)
+            return (sorted[i]);
         i++;
-        a = a->next;
     }
-    if (count > 1)
-        return (1);
-    return (0);
+    return (sorted[i]);
 }
 
 t_stack *search_pos(t_var *var, int index)
 {
     t_stack *a;
+    int *sorted;
+    int nb;
     int i;
-
-    a = var->a;
+    
+    if (!(sorted = malloc(sizeof(int) * (var->size_a))))
+        return (NULL);
+    lstcpy(sorted, var->a, var->size_a);
+    sorting_tab(sorted, var->size_a);
+    nb = search_number(sorted, var->size_a, index);
+    //ft_printf("nbbbbb : %d\n", nb);
     i = 0;
-    if (ascend(var->a, var->size_a))
+    a = var->a;
+    while (i < var->size_a)
     {
-        while (i < var->size_a)
+        if (nb == a->data)
         {
-            if (a->index < index && a->next->index > index)
-                return (a);
-            a = a->next;
-            i++;
+            free(sorted);
+            return (a);
         }
+        i++;
+        a = a->next;
     }
-    else
-    {
-        while (i < var->size_a)
-        {
-            if (a->index > index && a->next->index < index)
-                return (a);
-            a = a->next;
-            i++;
-        }
-    }
+    free(sorted);
     return (a);
 }
 
@@ -104,6 +101,7 @@ void path_finding_b(t_var *var, t_dir *dir, t_stack *current)
 
     rb = 0;
     curr = current;
+    //ft_printf("var->e_b : %d curr : %d e_b next : %d curr next : %d\n", var->e_b->data, curr->data, var->e_b->next->data, curr->next->data);
     while (var->e_b != curr)
     {
         curr = curr->next;
@@ -131,7 +129,9 @@ void path_finding_b(t_var *var, t_dir *dir, t_stack *current)
 
 void total_step(t_var *var, t_dir *dir, t_stack *curr)
 {
+    //ft_printf("call path_finding_b\n");
     path_finding_b(var, dir, curr);
+    //ft_printf("call path_finding_a\n");
     path_finding_a(var, dir, search_pos(var, curr->index));
 }
 

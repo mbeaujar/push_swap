@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 17:54:05 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/01 23:09:31 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 19:09:45 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void dir_align(t_var *var, int ra_size, int rra_size, t_ope *cmd)
 {
-    ft_printf("rra : %d ra : %d\n", rra_size, ra_size);
+    //ft_printf("rra : %d ra : %d\n", rra_size, ra_size);
     while (var->e_a->index != 0 && (ra_size < rra_size))
     {
         listadd_back(&cmd, listnew("ra"));
@@ -22,7 +22,7 @@ void dir_align(t_var *var, int ra_size, int rra_size, t_ope *cmd)
     }
     while (var->e_a->index != 0  && !(ra_size < rra_size))
     {
-        ft_printf("var->a->index : %d var->e_a->indew : %d\n", var->a->index, var->e_a->index);
+        //ft_printf("var->a->index : %d var->e_a->indew : %d\n", var->a->index, var->e_a->index);
         listadd_back(&cmd, listnew("rra"));
         rra(var);
     }
@@ -45,6 +45,22 @@ int maximum_index(t_stack *a, int size)
     return (index);
 }
 
+void check_pointer(t_var *var)
+{
+    int i = 0;
+    
+    t_stack *tmp;
+
+    tmp = var->a;
+    while (i < var->size_a)
+    {
+        ft_printf("-----------------\n");
+        ft_printf("previous : %d\ncurrent : %d\nnext : %d\n", tmp->previous->data, tmp->data, tmp->next->data);
+        tmp = tmp->next;
+        i++;
+    }
+}
+
 void align_stack_a(t_var *var, t_ope *cmd)
 {
     t_stack *curr;
@@ -60,6 +76,7 @@ void align_stack_a(t_var *var, t_ope *cmd)
     }
     ra = 0;
     curr = var->e_a;
+    //check_pointer(var);
     while (curr->index != 0)
     {
         curr = curr->previous;
@@ -101,28 +118,8 @@ t_ope *solve(t_var *var, int (*markup_fct)(t_stack *, t_stack *))
     t_ope *cmd;
 
     cmd = listnew("first");
-    ft_printf("call switch_to_b\n");
-    printkeep(var->a, var->size_a);
     switch_to_b(var, cmd, markup_fct);
-    t_ope *curr = cmd;
-    while (curr)
-    {
-        ft_printf("ss : %s\n", curr->name);
-        curr = curr->next;
-    }
-    printvar(var);
-    ft_printf("call switch_to_a\n");
     switch_to_a(var, cmd);
-    printvar(var);
-    ft_printf("call align_stack_a\n");
-    printindex(var->a, var->size_a);
-    /*t_stack *test = var->a;
-    while (test)
-    {
-        ft_printf("data : %d\n", test->data);
-        test = test->next;
-    }*/
     align_stack_a(var, cmd);
-    printvar(var);
     return (cmd);
 }

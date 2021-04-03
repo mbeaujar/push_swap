@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/01 23:10:09 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 20:12:31 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,41 +79,76 @@ void printvar(t_var *var)
 	ft_printf("\n------------------------------\n");
 }
 
+void compare_resultat(t_ope *cmd_gt, t_ope *cmd_index)
+{
+	t_ope *tmp;
+
+	if (cmdsize(cmd_gt) > cmdsize(cmd_index))
+	{
+		freecmd(cmd_gt);
+		tmp = cmd_index;
+		cmd_index = cmd_index->next;
+		free(tmp);
+		while (cmd_index)
+		{
+			ft_printf("%s\n", cmd_index->name);
+			tmp = cmd_index;
+			cmd_index = cmd_index->next;
+			free(tmp);
+		}
+	}
+	else
+	{
+		freecmd(cmd_index);
+		tmp = cmd_gt;
+		cmd_gt = cmd_gt->next;
+		free(tmp);
+		while (cmd_gt)
+		{
+			ft_printf("%s\n", cmd_gt->name);
+			tmp = cmd_gt;
+			cmd_gt = cmd_gt->next;
+			free(tmp);
+		}
+	}
+}
+
 int main(int argc, char **argv)
 {
 	t_var var;
-	t_ope *cmd;
+	//t_var var_gt;
+	t_var var_index;
+	//t_ope *cmd_gt;
+	t_ope *cmd_index;
 
 	if (argc == 1)
 		error(1);
-	cmd = NULL;
 	init_struct(&var);
 	var.a = parsing(argc, argv);
 	indexing(&var);
 	param_struct(&var);
-	markup_head(&var, markup_greater_than);
-	printvar(&var);
-	cmd = solve(&var, markup_greater_than);
-	printvar(&var);
-	/*ra(&var);
-	printvar(&var);
-	ra(&var);
-	ft_printf("next e_a : %d\n", var.e_a->next->data);
-	printvar(&var);*/
+	/*var_gt = var;
+	markup_head(&var_gt, markup_greater_than);
+	cmd_gt = solve(&var_gt, markup_greater_than);*/
+	var_index = var;
+	markup_head(&var_index, markup_index);
+	cmd_index = solve(&var_index, markup_index);
 	t_ope *tmp;
 	int i = 0;
+	t_ope *cmd = cmd_index;
 	tmp = cmd;
 	cmd = cmd->next;
 	free(tmp);
 	while (cmd)
 	{
-		ft_printf("s : %s\n", cmd->name);
+		ft_printf("%s\n", cmd->name);
 		tmp = cmd;
 		cmd = cmd->next;
 		free(tmp);
 		i++;
 	}
-	ft_printf("result : %d\n", i);
+	printvar(&var_index);
+	//compare_resultat(cmd_gt, cmd_index);
 	freelists(&var);
 	return (0);
 }

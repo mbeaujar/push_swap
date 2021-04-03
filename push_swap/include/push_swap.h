@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:37 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/01 15:15:29 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 19:23:50 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void rra(t_var *var);
 void rrb(t_var *var);
 void rrr(t_var *var);
 
+void lstcpy(int *sorted, t_stack *a, int size);
+void sorting_tab(int *sorted, int len);
 
 void markup_head(t_var *var, int (*markup_fct)(t_stack *, t_stack *));
 void switch_to_b(t_var *var, t_ope *cmd, int (*markup_fct)(t_stack *, t_stack *));
@@ -92,5 +94,7 @@ void indexing(t_var *var);
 void printlists(t_stack *a, int size);
 void printvar(t_var *var);
 void printdir(t_dir dir);
+int cmdsize(t_ope *cmd);
+void freecmd(t_ope *cmd);
 
 #endif 

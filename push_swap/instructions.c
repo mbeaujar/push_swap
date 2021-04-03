@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:39:11 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/01 22:55:50 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 19:08:04 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,46 @@ void ss(t_var *var)
 void pa(t_var *var)
 {
     t_stack *tmp;
+    t_stack *prev;
 
-    if (!var->b)
-        return; 
+    if (var->b == NULL)
+        return;
+    if (var->size_b == 1)
+        prev = var->e_a;
     tmp = var->e_b;
-    var->e_b->previous->next = var->b;
-    var->b->previous = var->e_b->previous;
-    
-    var->e_a->next = tmp;
-    tmp->previous = var->e_a;
-    tmp->next = var->a;
-    var->a->previous = tmp;
-    var->e_a = tmp;
-
-    var->size_a++;
+    var->e_b = tmp->previous;
+    if (var->e_b && var->b)
+        var->e_b->next = var->b;
+    else
+        var->b = NULL;
+    if (var->a)
+    {
+        var->e_a->next = tmp;
+        tmp->previous = var->e_a;
+        tmp->next = var->a;
+        var->e_a = tmp;
+        var->a->previous = var->e_a;
+    }
+    else
+    {
+        var->a = tmp;
+        var->a->next = tmp;
+        var->a->previous = tmp;
+        var->e_a = var->a;
+    }
+    var->e_a->next = var->a;
+    var->a->previous = var->e_a;
+    var->e_b->next = var->b;
+    var->b->previous = var->e_b;
     var->size_b--;
+    var->size_a++;
     if (var->size_b == 0)
     {
         var->b = NULL;
         var->e_b = NULL;
+        var->e_a->next = var->a;
+        var->a->previous = var->e_a;
+        var->e_a->previous = prev;
     }
 }
 

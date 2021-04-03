@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:27:20 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/01 21:49:12 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 19:23:37 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,31 @@ t_stack *lstnew(int data)
     cell->index = 0;
     cell->keep_in_stack = 0;
     return (cell);
+}
+
+int cmdsize(t_ope *cmd)
+{
+    int i;
+
+    i = 0;
+    while (cmd)
+    {
+        cmd = cmd->next;
+        i++;
+    }
+    return (i);
+}
+
+void freecmd(t_ope *cmd)
+{
+    t_ope *tmp;
+
+    while (cmd)
+    {
+        tmp = cmd;
+        cmd = cmd->next;
+        free(tmp);
+    }
 }
 
 void listadd_back(t_ope **alst, t_ope *neww)

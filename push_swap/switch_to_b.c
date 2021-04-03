@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 17:49:04 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/01 23:01:10 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 19:19:13 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void switch_to_b(t_var *var, t_ope *cmd, int (*markup_fct)(t_stack *, t_stack *)
 {
     while (keeping(var->a, var->size_a))
     {
-        printvar(var);
         if (make_sa(var, markup_fct))
         {
             sa(var);
@@ -68,12 +67,5 @@ void switch_to_b(t_var *var, t_ope *cmd, int (*markup_fct)(t_stack *, t_stack *)
             ra(var);
             listadd_back(&cmd, listnew("ra"));
         }
-    }
-    int i = 0;
-    while (cmd)
-    {
-        ft_printf("s : %s\n", cmd->name);
-        cmd = cmd->next;
-        i++;
     }
 }

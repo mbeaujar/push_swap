@@ -6,18 +6,18 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:11:25 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/01 16:22:25 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 17:29:32 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void lstcpy(int *sorted, t_stack *a)
+void lstcpy(int *sorted, t_stack *a, int size)
 {
     int i;
 
     i = 0;
-    while (a)
+    while (i < size)
     {
         sorted[i] = a->data;
         a = a->next;
@@ -72,7 +72,7 @@ void indexing(t_var *var)
     len = lstsize(var->a);
     if (!(sorted = malloc(sizeof(int) * len)))
         return;
-    lstcpy(sorted, var->a);
+    lstcpy(sorted, var->a, len);
     sorting_tab(sorted, len);
     set_index(var->a, sorted);
     free(sorted);

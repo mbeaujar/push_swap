@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:59:02 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/01 17:55:10 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 20:10:57 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int markup_index(t_stack *a, t_stack *markup_head)
     {
         index = markup_head->index;
         markup_head->keep_in_stack = 1;
-        a = markup_head->next;
+        a = markup_head->previous;
         while (a != markup_head)
         {
             if (a->index == index + 1)
@@ -60,7 +60,7 @@ int markup_index(t_stack *a, t_stack *markup_head)
             }
             else
                 a->keep_in_stack = 0;
-            a = a->next;
+            a = a->previous;
         }
     }
     return (keep);

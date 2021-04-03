@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:26:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/03/28 19:12:33 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/03 18:56:44 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ void read_stdin(t_stack *a)
             freelist(b);
             error(0);
         }
-        ft_printf("A ");
+       /* ft_printf("A ");
         printlist(a);
         ft_printf("B ");
-        printlist(b);
+        printlist(b);*/
     }
-    printlist(a);
+    //printlist(a);
     check_valid(a, b);
 }

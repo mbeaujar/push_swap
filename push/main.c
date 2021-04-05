@@ -6,22 +6,16 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/03 21:18:47 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/05 13:03:05 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void error(int error)
+void	param_struct(t_var *var)
 {
-	ft_printf("Error\n");
-	exit(error);
-}
-
-void param_struct(t_var *var)
-{
-	t_stack *tmp;
-	int i;
+	t_stack	*tmp;
+	int		i;
 
 	tmp = var->a;
 	i = 0;
@@ -36,7 +30,7 @@ void param_struct(t_var *var)
 	var->a->previous = var->e_a;
 }
 
-void init_struct(t_var *var)
+void	init_struct(t_var *var)
 {
 	var->a = NULL;
 	var->e_a = NULL;
@@ -48,38 +42,24 @@ void init_struct(t_var *var)
 	var->markup_head = NULL;
 }
 
-void printlists(t_stack *a, int size)
+void	compare_resultat_part2(t_ope *cmd_gt, t_ope *cmd_index)
 {
-	int i;
+	t_ope *tmp;
 
-	if (a)
+	freecmd(cmd_index);
+	tmp = cmd_gt;
+	cmd_gt = cmd_gt->next;
+	free(tmp);
+	while (cmd_gt)
 	{
-		i = 0;
-		while (i < size)
-		{
-			ft_printf("%d ", a->data);
-			a = a->next;
-			i++;
-		}
+		ft_printf("%s\n", cmd_gt->name);
+		tmp = cmd_gt;
+		cmd_gt = cmd_gt->next;
+		free(tmp);
 	}
 }
 
-void printvar(t_var *var)
-{
-	ft_printf("\n------------------------------\n");
-	if (var->markup_head)
-		ft_printf("markup_head : %d\n", var->markup_head->data);
-	ft_printf("size_a : %d\nsize_b : %d\n", var->size_a, var->size_b);
-	ft_printf("a : %d e_a : %d\n", var->a->data, var->e_a->data);
-	if (var->b)
-		ft_printf("b : %d e_b : %d\n", var->b->data, var->e_b->data);
-	printlists(var->a, var->size_a);
-	ft_printf("\n");
-	printlists(var->b, var->size_b);
-	ft_printf("\n------------------------------\n");
-}
-
-void compare_resultat(t_ope *cmd_gt, t_ope *cmd_index)
+void	compare_resultat(t_ope *cmd_gt, t_ope *cmd_index)
 {
 	t_ope *tmp;
 
@@ -98,22 +78,10 @@ void compare_resultat(t_ope *cmd_gt, t_ope *cmd_index)
 		}
 	}
 	else
-	{
-		freecmd(cmd_index);
-		tmp = cmd_gt;
-		cmd_gt = cmd_gt->next;
-		free(tmp);
-		while (cmd_gt)
-		{
-			ft_printf("%s\n", cmd_gt->name);
-			tmp = cmd_gt;
-			cmd_gt = cmd_gt->next;
-			free(tmp);
-		}
-	}
+		compare_resultat_part2(cmd_gt, cmd_index);
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_var var;
 	t_ope *cmd_gt;

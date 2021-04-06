@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:26:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 15:24:11 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/05 16:29:04 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	eval(t_stack *a, t_stack *b, int note)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	//printlist(a);
+	//printlist(b);
 	if (a)
 		freelist(a);
 	if (b)

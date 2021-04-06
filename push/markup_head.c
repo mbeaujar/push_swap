@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:59:02 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/04 22:59:34 by beaujardm        ###   ########.fr       */
+/*   Updated: 2021/04/05 19:34:49 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		markup_index(t_stack *a, t_stack *markup_head)
 		{
 			if (a->index == index + 1)
 			{
-				index += 1;
+				index++;
 				keep++;
 				a->keep_in_stack = 1;
 			}

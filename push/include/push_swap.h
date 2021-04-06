@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:37 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 14:51:37 by beaujardm        ###   ########.fr       */
+/*   Updated: 2021/04/05 21:47:33 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,8 @@ int				cmdsize(t_ope *cmd);
 void			freecmd(t_ope *cmd);
 t_stack			*search_pos(t_var *var, int index);
 void			refresh_dir(t_dir *dir);
+void			printlists(t_stack *a, int size);
+void			printvar(t_var *var);
+void			printtab(int *sorted, int len);
 
 #endif

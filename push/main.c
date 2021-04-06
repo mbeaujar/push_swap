@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 13:03:05 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/05 19:11:47 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int		main(int argc, char **argv)
 	param_struct(&var);
 	markup_head(&var, markup_greater_than);
 	cmd_gt = solve(&var, markup_greater_than);
+	//printvar(&var); //
 	freelists(&var);
 	init_struct(&var);
 	var.a = parsing(argc, argv);
@@ -102,6 +103,7 @@ int		main(int argc, char **argv)
 	param_struct(&var);
 	markup_head(&var, markup_index);
 	cmd_index = solve(&var, markup_index);
+	//printvar(&var); //
 	compare_resultat(cmd_gt, cmd_index);
 	freelists(&var);
 	return (0);

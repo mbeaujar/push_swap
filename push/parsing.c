@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:35:40 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/04 22:53:50 by beaujardm        ###   ########.fr       */
+/*   Updated: 2021/04/06 18:26:50 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		recup_nb(char *arg, t_stack *begin)
 	i = 0;
 	nb = 0;
 	if (is_number(arg) == 0)
-		error_free(1, begin);
+		error_free(3, begin);
 	while (arg[i])
 	{
 		nb = (nb) * 10 + (arg[i] - 48);
@@ -50,7 +50,7 @@ int		recup_nb(char *arg, t_stack *begin)
 	if (i > 11)
 		error_free(1, begin);
 	if (nb > 2147483647 || nb < -2147483648)
-		error_free(1, begin);
+		error_free(2, begin);
 	return (nb);
 }
 
@@ -70,15 +70,16 @@ void	check_nb(t_stack *begin, int nb)
 	}
 }
 
-t_stack	*parsing(int argc, char **argv)
+t_stack	*parsing(int argc, char **argv, t_bonus *options)
 {
 	int		i;
 	t_stack	*head;
 	int		nb;
 
-	i = 1;
 	if (argc == 1)
 		error(1);
+	i = enable_flags(argv, options);
+	empty_string(argc, argv);
 	head = lstnew(recup_nb(argv[i++], NULL));
 	while (i < argc)
 	{

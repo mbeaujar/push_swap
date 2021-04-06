@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 20:35:02 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 15:38:15 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/06 17:01:05 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,26 @@
 typedef struct	s_stack
 {
 	int					data;
+	int					color;
 	struct s_stack		*next;
 }				t_stack;
+
+typedef struct s_bonus
+{
+	int v;
+	int c;
+}	t_bonus;
 
 t_stack			*lstnew(int data);
 void			lstadd_front(t_stack **alst, t_stack *neww);
 void			printlist(t_stack *lst);
-t_stack			*parsing(int argc, char **argv);
+t_stack			*parsing(int argc, char **argv, t_bonus *options);
 void			printlist(t_stack *lst);
 void			freelist(t_stack *lst);
 void			error(int error);
 void			error_free(int error, t_stack *begin);
 int				lstsize(t_stack *lst);
-void			read_stdin(t_stack *a);
+void			read_stdin(t_stack *a, t_bonus *options);
 void			sa(t_stack **a, int *check);
 void			sb(t_stack **b, int *check);
 void			ss(t_stack **a, t_stack **b, int *check);
@@ -46,5 +53,8 @@ void			rr(t_stack **a, t_stack **b, int *check);
 void			rra(t_stack **a, int *check);
 void			rrb(t_stack **b, int *check);
 void			rrr(t_stack **a, t_stack **b, int *check);
+void			empty_string(int argc, char **argv);
+int				enable_flags(char **argv, t_bonus *options);
+void			is_bonus(t_stack *a, t_stack *b, t_bonus *options);
 
 #endif

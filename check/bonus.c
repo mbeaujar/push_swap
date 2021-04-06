@@ -1,61 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/05 16:30:47 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/06 19:18:35 by mbeaujar         ###   ########.fr       */
+/*   Created: 2021/04/06 16:18:46 by mbeaujar          #+#    #+#             */
+/*   Updated: 2021/04/06 17:22:21 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push_swap.h"
-
-void printlists(t_stack *a, int size)
-{
-	int i;
-
-	if (a)
-	{
-		i = 0;
-		while (i < size)
-		{
-			ft_printf("%d ", a->data);
-			a = a->next;
-			i++;
-		}
-	}
-}
-
-void printtab(int *sorted, int len)
-{
-	int i;
-
-	i = 0;
-	ft_printf("\n_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
-	while (i < len)
-	{
-		ft_printf("%d ", sorted[i]);
-		i++;
-	}
-	ft_printf("\n_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
-}
-
-void printvar(t_var *var)
-{
-	ft_printf("\n------------------------------\n");
-	if (var->markup_head)
-		ft_printf("markup_head : %d\n", var->markup_head->data);
-	ft_printf("size_a : %d\nsize_b : %d\n", var->size_a, var->size_b);
-	ft_printf("a : %d e_a : %d\n", var->a->data, var->e_a->data);
-	if (var->b)
-		ft_printf("b : %d e_b : %d\n", var->b->data, var->e_b->data);
-	printlists(var->a, var->size_a);
-	ft_printf("\n");
-	printlists(var->b, var->size_b);
-	ft_printf("\n------------------------------\n");
-}
+#include "include/checker.h"
 
 void empty_string(int argc, char **argv)
 {
@@ -105,4 +60,36 @@ int enable_flags(char **argv, t_bonus *options)
 		}
 	}
 	return (nb_options);
+}
+
+void printlists(t_stack *a, t_stack *b, t_bonus *options)
+{
+	ft_printf("\n-------------------------------\n");
+	ft_printf("base |");
+	while (a)
+	{
+		if (options->c && a->color && a->color--)
+			ft_printf(" \033[1;31m%d\033[0m ->", a->data);
+		else
+			ft_printf(" %d ->", a->data);
+		a = a->next;
+	}
+	ft_printf(" NULL | sommet\n");
+	ft_printf("base |");
+	while (b)
+	{
+		if (options->c && b->color && b->color--)
+			ft_printf(" \033[1;31m%d\033[0m ->", b->data);
+		else
+			ft_printf(" %d ->", b->data);
+		b = b->next;
+	}
+	ft_printf(" NULL | sommet\n");
+	ft_printf("\n-------------------------------\n");
+}
+
+void is_bonus(t_stack *a, t_stack *b, t_bonus *options)
+{
+	if (options->v)
+		printlists(a, b, options);
 }

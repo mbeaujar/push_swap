@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:39:11 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/04 23:18:37 by beaujardm        ###   ########.fr       */
+/*   Updated: 2021/04/06 17:55:12 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ void	lstadd_front(t_stack **lst, t_stack *new)
 {
 	t_stack *cell;
 
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
 	cell = *lst;
 	new->next = cell;
 	cell->previous = new;

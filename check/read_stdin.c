@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:26:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 16:29:04 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/06 16:59:57 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	check_instructions_part2(char *str, t_stack **a,
 	t_stack **b, int *check)
 {
-	if (strcmp(str, "rb") == 0)
+	if (ft_strncmp(str, "rb", 5) == 0)
 		rb(b, check);
-	if (strcmp(str, "rr") == 0)
+	if (ft_strncmp(str, "rr", 5) == 0)
 		rr(a, b, check);
-	if (strcmp(str, "rra") == 0)
+	if (ft_strncmp(str, "rra", 5) == 0)
 		rra(a, check);
-	if (strcmp(str, "rrb") == 0)
+	if (ft_strncmp(str, "rrb", 5) == 0)
 		rrb(b, check);
-	if (strcmp(str, "rrr") == 0)
+	if (ft_strncmp(str, "rrr", 5) == 0)
 		rrr(a, b, check);
 }
 
@@ -32,17 +32,17 @@ int		check_instructions(char *str, t_stack **a, t_stack **b)
 	int check;
 
 	check = 0;
-	if (strcmp(str, "sa") == 0)
+	if (ft_strncmp(str, "sa", 5) == 0)
 		sa(a, &check);
-	if (strcmp(str, "sb") == 0)
+	if (ft_strncmp(str, "sb", 5) == 0)
 		sb(b, &check);
-	if (strcmp(str, "ss") == 0)
+	if (ft_strncmp(str, "ss", 5) == 0)
 		ss(a, b, &check);
-	if (strcmp(str, "pa") == 0)
+	if (ft_strncmp(str, "pa", 5) == 0)
 		pa(a, b, &check);
-	if (strcmp(str, "pb") == 0)
+	if (ft_strncmp(str, "pb", 5) == 0)
 		pb(a, b, &check);
-	if (strcmp(str, "ra") == 0)
+	if (ft_strncmp(str, "ra", 5) == 0)
 		ra(a, &check);
 	check_instructions_part2(str, a, b, &check);
 	return (check);
@@ -54,8 +54,6 @@ void	eval(t_stack *a, t_stack *b, int note)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
-	//printlist(a);
-	//printlist(b);
 	if (a)
 		freelist(a);
 	if (b)
@@ -81,7 +79,7 @@ void	check_valid(t_stack *a, t_stack *b)
 	eval(a, b, 1);
 }
 
-void	read_stdin(t_stack *a)
+void	read_stdin(t_stack *a, t_bonus *options)
 {
 	int			ret;
 	t_stack		*b;
@@ -104,6 +102,7 @@ void	read_stdin(t_stack *a)
 			freelist(b);
 			error(0);
 		}
+		is_bonus(a, b, options);
 	}
 	check_valid(a, b);
 }

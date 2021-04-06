@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 19:11:47 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/06 19:23:48 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_struct(t_var *var)
 	var->markup_head = NULL;
 }
 
-void	compare_resultat_part2(t_ope *cmd_gt, t_ope *cmd_index)
+void	compare_resultat_part2(t_ope *cmd_gt, t_ope *cmd_index, t_bonus *options)
 {
 	t_ope *tmp;
 
@@ -52,14 +52,17 @@ void	compare_resultat_part2(t_ope *cmd_gt, t_ope *cmd_index)
 	free(tmp);
 	while (cmd_gt)
 	{
-		ft_printf("%s\n", cmd_gt->name);
+		if (options->c && cmd_gt->next == NULL)
+			ft_printf("\033[1;31m%s\033[0m\n", cmd_gt->name);
+		else
+			ft_printf("%s\n", cmd_gt->name);
 		tmp = cmd_gt;
 		cmd_gt = cmd_gt->next;
 		free(tmp);
 	}
 }
 
-void	compare_resultat(t_ope *cmd_gt, t_ope *cmd_index)
+void	compare_resultat(t_ope *cmd_gt, t_ope *cmd_index, t_bonus *options)
 {
 	t_ope *tmp;
 
@@ -71,14 +74,17 @@ void	compare_resultat(t_ope *cmd_gt, t_ope *cmd_index)
 		free(tmp);
 		while (cmd_index)
 		{
-			ft_printf("%s\n", cmd_index->name);
+			if (options->c && cmd_index->next == NULL)
+				ft_printf("\033[1;31m%s\033[0m\n", cmd_index->name);
+			else 
+				ft_printf("%s\n", cmd_index->name);
 			tmp = cmd_index;
 			cmd_index = cmd_index->next;
 			free(tmp);
 		}
 	}
 	else
-		compare_resultat_part2(cmd_gt, cmd_index);
+		compare_resultat_part2(cmd_gt, cmd_index, options);
 }
 
 int		main(int argc, char **argv)
@@ -86,25 +92,28 @@ int		main(int argc, char **argv)
 	t_var var;
 	t_ope *cmd_gt;
 	t_ope *cmd_index;
+	t_bonus options;
 
 	if (argc == 1)
-		error(1);
+		exit(1);
 	init_struct(&var);
-	var.a = parsing(argc, argv);
+	var.a = parsing(argc, argv, &options);
 	indexing(&var);
 	param_struct(&var);
 	markup_head(&var, markup_greater_than);
 	cmd_gt = solve(&var, markup_greater_than);
-	//printvar(&var); //
 	freelists(&var);
 	init_struct(&var);
-	var.a = parsing(argc, argv);
+	var.a = parsing(argc, argv, &options);
 	indexing(&var);
 	param_struct(&var);
 	markup_head(&var, markup_index);
 	cmd_index = solve(&var, markup_index);
-	//printvar(&var); //
-	compare_resultat(cmd_gt, cmd_index);
 	freelists(&var);
+	if (options.v)
+		iq200(cmdsize(cmd_gt) > cmdsize(cmd_index) ? cmd_index : cmd_gt,
+		argc, argv,
+		cmdsize(cmd_gt) > cmdsize(cmd_index) ? cmd_gt : cmd_index);
+	compare_resultat(cmd_gt, cmd_index, &options);
 	return (0);
 }

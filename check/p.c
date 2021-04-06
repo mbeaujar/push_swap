@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:44:22 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 15:30:58 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/06 16:46:18 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ void	pa(t_stack **a, t_stack **b, int *check)
 		while (begin_b->next->next != NULL)
 			begin_b = begin_b->next;
 		tmp = begin_b->next;
+		tmp->color = 1;
 		begin_b->next = NULL;
 	}
 	else if (begin_b)
 	{
 		tmp = *b;
+		tmp->color = 1;
 		*b = NULL;
 	}
 	pa_part2(begin_a, begin_b, tmp, a);
@@ -76,11 +78,13 @@ void	pb(t_stack **a, t_stack **b, int *check)
 		while (begin_a->next->next != NULL)
 			begin_a = begin_a->next;
 		tmp = begin_a->next;
+		tmp->color = 1;
 		begin_a->next = NULL;
 	}
 	else if (begin_a)
 	{
 		tmp = *a;
+		tmp->color = 1;
 		*a = NULL;
 	}
 	pb_part2(begin_a, begin_b, tmp, b);

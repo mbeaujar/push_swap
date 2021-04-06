@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 18:28:45 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 19:46:25 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/06 17:12:58 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ int calcule_the_best_of_the_best(t_dir *dir)
 			len = dir->len_b;
 	}
 	return (len);
-	/*
-	if (len < (*best_path))
-	{
-		var->dir = dir;
-		(*best_path) = len;
-	}*/
 }
 
 void	search_path(t_var *var)
@@ -64,13 +58,6 @@ void	search_path(t_var *var)
 				var->dir = dir;
 				best_path = len;
 			}
-			/*
-			if (dir.len_a + dir.len_b <= best_path)
-			{
-				var->dir = dir;
-				best_path = dir.len_a + dir.len_b;
-			}
-			*/
 			curr = curr->next;
 			i++;
 		}

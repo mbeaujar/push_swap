@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:37 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 21:47:33 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/06 19:09:10 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ typedef struct	s_stack
 	struct s_stack	*next;
 	struct s_stack	*previous;
 }				t_stack;
+
+typedef struct s_bonus
+{
+	int v;
+	int c;
+}	t_bonus;
 
 typedef struct	s_ope
 {
@@ -56,7 +62,7 @@ typedef struct	s_var
 }				t_var;
 
 void			error(int error);
-t_stack			*parsing(int argc, char **argv);
+t_stack			*parsing(int argc, char **argv, t_bonus *options);
 int				lstsize(t_stack *lst);
 void			freelist(t_stack *lst);
 t_stack			*lstnew(int data);
@@ -96,5 +102,11 @@ void			refresh_dir(t_dir *dir);
 void			printlists(t_stack *a, int size);
 void			printvar(t_var *var);
 void			printtab(int *sorted, int len);
+void			new_var(t_var *var, t_var *new_var);
+void			empty_string(int argc, char **argv);
+int				enable_flags(char **argv, t_bonus *options);
+void			iq200(t_ope *cmd, int argc, char **argv, t_ope *free_cmd);
+void			init_struct(t_var *var);
+void			param_struct(t_var *var);
 
 #endif

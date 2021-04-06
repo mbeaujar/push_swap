@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 14:54:27 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 15:32:20 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/06 16:55:58 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	sa(t_stack **a, int *check)
 	}
 	tmp = begin->data;
 	begin->data = begin->next->data;
+	begin->color = 1;
+	begin->next->color = 1;
 	begin->next->data = tmp;
 }
 
@@ -45,6 +47,8 @@ void	sb(t_stack **b, int *check)
 	}
 	tmp = begin->data;
 	begin->data = begin->next->data;
+	begin->color = 1;
+	begin->next->color = 1;
 	begin->next->data = tmp;
 }
 

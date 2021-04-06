@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 14:53:54 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 15:00:45 by beaujardm        ###   ########.fr       */
+/*   Updated: 2021/04/06 17:47:04 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	rra(t_stack **a, int *check)
 		while (begin->next != NULL)
 			begin = begin->next;
 		begin->next = *a;
+		begin->next->color = 1;
 		*a = (*a)->next;
 		begin->next->next = NULL;
 	}
@@ -39,6 +40,7 @@ void	rrb(t_stack **b, int *check)
 		while (begin->next != NULL)
 			begin = begin->next;
 		begin->next = *b;
+		begin->next->color = 1;
 		*b = (*b)->next;
 		begin->next->next = NULL;
 	}

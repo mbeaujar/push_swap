@@ -24,8 +24,6 @@ elif [ ! -f ./checker ]; then
 	exit 1
 fi
 
-
-
 display_note()
 {
     if [ $2 -eq 100 ] ;then
@@ -56,9 +54,7 @@ display_note()
     fi
 }
 
-
 clear
-
 
 echo ${GREEN}
 echo " ______________________________________ "
@@ -67,13 +63,11 @@ echo "|              TEST ERROR              |"
 echo "|______________________________________|"
 echo ${NC}
 
-
-
 MSG_ERROR=0
 
 printf "${GREEN}Error : ${NC}"
 touch endline.txt
-error=("-2147483649 1" "2147483648 2" "1000000000000 5" "3 4 5")
+error=("-2147483649 1" "2147483648 2" "1000000000000 5" "1 2 4 5 2" "5 4 3 2 one")
 for error in "${error[@]}"
 do
 	if ./checker $error < endline.txt | grep -q -E "KO|Error"; then
@@ -88,14 +82,24 @@ do
 	printf " "
 done
 
+if echo "saa" > endline.txt && ./checker 2 1 3 4 5 < endline.txt | grep -q -E "KO|Error"; then
+	printf "${GREEN}[OK]${NC}"
+else
+	printf "${RED}[KO]${NC}"
+	echo "/!\\ TEST FAILED /!\\" >> error.log
+	echo "ARG : '$error'" >> error.log
+	echo "test returned : [KO]" >> error.log
+	MSG_ERROR=$(($MSG_ERROR + 1))
+fi
+printf " "
+
 rm -rf endline.txt
 
-printf "\n\n"
+printf "\n"
 
 if [ $MSG_ERROR -gt 0 ]; then
 	echo "Error file : error.log"
 fi
-
 
 echo ${GREEN}
 echo " ______________________________________ "
@@ -208,7 +212,6 @@ echo "|                                      |"
 echo "|              TEST FOR 500            |"
 echo "|______________________________________|"
 echo ${NC}
-
 
 ##### DEFINES VARIABLES #####
 

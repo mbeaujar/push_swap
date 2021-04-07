@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 14:53:20 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/06 17:47:18 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:47:29 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ra(t_stack **a, int *check)
 		tmp->next = *a;
 		*a = tmp;
 		(*a)->color = 1;
-
 	}
 }
 

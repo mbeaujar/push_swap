@@ -6,18 +6,18 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 23:03:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/06 17:12:43 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:46:33 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void search_value(t_stack **max, t_stack **min, t_stack *a, int size)
+void	search_value(t_stack **max, t_stack **min, t_stack *a, int size)
 {
 	t_stack *high;
 	t_stack *low;
-	int i;
-	
+	int		i;
+
 	high = a;
 	low = a;
 	i = 0;
@@ -34,12 +34,12 @@ void search_value(t_stack **max, t_stack **min, t_stack *a, int size)
 	*min = low;
 }
 
-t_stack *search_pos(t_var *var, int number)
+t_stack	*search_pos(t_var *var, int number)
 {
 	t_stack *a;
 	t_stack *max;
 	t_stack *min;
-	int i;
+	int		i;
 
 	search_value(&max, &min, var->a, var->size_a);
 	a = max;
@@ -57,9 +57,6 @@ t_stack *search_pos(t_var *var, int number)
 	}
 	return (a);
 }
-
-
-
 
 void	refresh_dir(t_dir *dir)
 {

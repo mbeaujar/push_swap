@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 18:28:45 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/06 17:12:58 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:45:47 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	total_step(t_var *var, t_dir *dir, t_stack *curr)
 	path_finding_a(var, dir, search_pos(var, curr->data));
 }
 
-int calcule_the_best_of_the_best(t_dir *dir)
+int		calcule_the_best_of_the_best(t_dir *dir)
 {
 	int len;
-	
+
 	len = dir->len_a + dir->len_b;
 	if (dir->a != dir->b)
 		len = dir->len_a + dir->len_b;
@@ -41,7 +41,7 @@ void	search_path(t_var *var)
 	int		best_path;
 	t_dir	dir;
 	t_stack	*curr;
-	int len;
+	int		len;
 
 	if (var->b)
 	{

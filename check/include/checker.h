@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 20:35:02 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/06 17:01:05 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:51:09 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ typedef struct	s_stack
 	struct s_stack		*next;
 }				t_stack;
 
-typedef struct s_bonus
+typedef struct	s_bonus
 {
-	int v;
-	int c;
-}	t_bonus;
+	int			v;
+	int			c;
+}				t_bonus;
 
 t_stack			*lstnew(int data);
 void			lstadd_front(t_stack **alst, t_stack *neww);

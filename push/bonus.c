@@ -6,13 +6,13 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 18:28:48 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/07 00:32:07 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:37:41 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void instru(char *name, t_var *var)
+void	instru(char *name, t_var *var)
 {
 	if (ft_strncmp(name, "sa", 5) == 0)
 		sa(var);
@@ -38,12 +38,33 @@ void instru(char *name, t_var *var)
 		rrr(var);
 }
 
-
-void iq200(t_ope *cmd, int argc, char **argv, t_ope *free_cmd)
+void	init_param(t_var *var, t_ope *cmd, t_bonus *options)
 {
-	t_var var;
-	t_bonus options;
 	t_ope *tmp;
+
+	while (cmd)
+	{
+		if (options->c && cmd->next == NULL)
+			ft_printf("\033[1;31m%s\033[0m\n", cmd->name);
+		else
+			ft_printf("%s\n", cmd->name);
+		tmp = cmd;
+		instru(cmd->name, var);
+		cmd = cmd->next;
+		free(tmp);
+		ft_printf("Stack a : ");
+		printlists(var->a, var->size_a);
+		ft_printf("\nStack b : ");
+		printlists(var->b, var->size_b);
+		ft_printf("\n");
+	}
+}
+
+void	iq200(t_ope *cmd, int argc, char **argv, t_ope *free_cmd)
+{
+	t_var	var;
+	t_bonus	options;
+	t_ope	*tmp;
 
 	init_struct(&var);
 	var.a = parsing(argc, argv, &options);
@@ -53,22 +74,7 @@ void iq200(t_ope *cmd, int argc, char **argv, t_ope *free_cmd)
 	tmp = cmd;
 	cmd = cmd->next;
 	free(tmp);
-	while (cmd)
-	{
-		if (options.c && cmd->next == NULL)
-			ft_printf("\033[1;31m%s\033[0m\n", cmd->name);
-		else
-			ft_printf("%s\n", cmd->name);
-		tmp = cmd;
-		instru(cmd->name, &var);
-		cmd = cmd->next;
-		free(tmp);
-		ft_printf("Stack a : ");
-		printlists(var.a, var.size_a);
-		ft_printf("\nStack b : ");
-		printlists(var.b, var.size_b);
-		ft_printf("\n");
-	}
+	init_param(&var, cmd, &options);
 	freelists(&var);
 	exit(1);
 }

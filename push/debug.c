@@ -6,13 +6,13 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:30:47 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/06 19:18:35 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:40:25 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void printlists(t_stack *a, int size)
+void	printlists(t_stack *a, int size)
 {
 	int i;
 
@@ -28,21 +28,7 @@ void printlists(t_stack *a, int size)
 	}
 }
 
-void printtab(int *sorted, int len)
-{
-	int i;
-
-	i = 0;
-	ft_printf("\n_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
-	while (i < len)
-	{
-		ft_printf("%d ", sorted[i]);
-		i++;
-	}
-	ft_printf("\n_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
-}
-
-void printvar(t_var *var)
+void	printvar(t_var *var)
 {
 	ft_printf("\n------------------------------\n");
 	if (var->markup_head)
@@ -57,7 +43,7 @@ void printvar(t_var *var)
 	ft_printf("\n------------------------------\n");
 }
 
-void empty_string(int argc, char **argv)
+void	empty_string(int argc, char **argv)
 {
 	int i;
 
@@ -70,7 +56,25 @@ void empty_string(int argc, char **argv)
 	}
 }
 
-int enable_flags(char **argv, t_bonus *options)
+int		enable_flags_part2(char **argv, t_bonus *options, int *nb_options)
+{
+	if (ft_strncmp(argv[2], "-v", 3) == 0)
+	{
+		if (options->v)
+			error(5);
+		options->v = 1;
+		(*nb_options)++;
+	}
+	if (ft_strncmp(argv[2], "-c", 3) == 0)
+	{
+		if (options->c)
+			error(4);
+		options->c = 1;
+		(*nb_options)++;
+	}
+}
+
+int		enable_flags(char **argv, t_bonus *options)
 {
 	int nb_options;
 
@@ -88,21 +92,6 @@ int enable_flags(char **argv, t_bonus *options)
 		nb_options++;
 	}
 	if (nb_options > 1)
-	{
-		if (ft_strncmp(argv[2], "-v", 3) == 0)
-		{
-			if (options->v)
-				error(5);
-			options->v = 1;
-			nb_options++;
-		}
-		if (ft_strncmp(argv[2], "-c", 3) == 0)
-		{
-			if (options->c)
-				error(4);
-			options->c = 1;
-			nb_options++;
-		}
-	}
+		enable_flags_part2(argv, options, &nb_options);
 	return (nb_options);
 }

@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/07 16:45:11 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:54:00 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	setup(t_var *var, int argc, char **argv, t_bonus *options)
 	var->size_b = 0;
 	var->nb_keep = 0;
 	var->markup_head = NULL;
-	var->a = parsing(argc, argv, &options);
+	var->a = parsing(argc, argv, options);
 	indexing(var);
 	param_struct(var);
 }

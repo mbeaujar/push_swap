@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 18:28:48 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/07 16:37:41 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:55:55 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ void	iq200(t_ope *cmd, int argc, char **argv, t_ope *free_cmd)
 	t_bonus	options;
 	t_ope	*tmp;
 
-	init_struct(&var);
-	var.a = parsing(argc, argv, &options);
-	indexing(&var);
-	param_struct(&var);
+	setup(&var, argc, argv, &options);
 	freecmd(free_cmd);
 	tmp = cmd;
 	cmd = cmd->next;

@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:30:47 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/07 16:40:25 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:54:19 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	empty_string(int argc, char **argv)
 	}
 }
 
-int		enable_flags_part2(char **argv, t_bonus *options, int *nb_options)
+void	enable_flags_part2(char **argv, t_bonus *options, int *nb_options)
 {
 	if (ft_strncmp(argv[2], "-v", 3) == 0)
 	{

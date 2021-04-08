@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:26:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/06 16:59:57 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/08 16:05:29 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	read_stdin(t_stack *a, t_bonus *options)
 			freelist(b);
 			error(0);
 		}
-		is_bonus(a, b, options);
+		is_bonus(a, b, options, ret);
 	}
 	check_valid(a, b);
 }

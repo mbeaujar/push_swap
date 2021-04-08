@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:18:46 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/07 16:50:47 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/08 16:06:00 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	printlists(t_stack *a, t_stack *b, t_bonus *options)
 	ft_printf("\n-------------------------------\n");
 }
 
-void	is_bonus(t_stack *a, t_stack *b, t_bonus *options)
+void	is_bonus(t_stack *a, t_stack *b, t_bonus *options, int ret)
 {
-	if (options->v)
+	if (ret && options->v)
 		printlists(a, b, options);
 }

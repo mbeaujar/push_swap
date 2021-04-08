@@ -1,7 +1,7 @@
 NAME = libft.a
 CC = gcc 
 CFLAGS = -Wall -Wextra -Werror
-INC = inc/libft.h
+INC = inc
 ARC = ar rcs 
 SRCS = ft_is/ft_isalnum.c \
        ft_is/ft_isalpha.c \

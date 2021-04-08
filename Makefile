@@ -12,7 +12,7 @@ SRC_CHECK = main.c parsing.c read_stdin.c r.c \
 	p.c rr.c s.c bonus.c
 SRCS_CHECK = $(addprefix check/, $(SRC_CHECK))
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 all : $(NAME_PUSH) $(NAME_CHECK)
@@ -21,10 +21,10 @@ $(NAME_PUSH) :
 ifeq ("$(wildcard $(FILE_LIB))","")
 	@make -C libft
 endif
-	@$(CC) $(CFLAGS) -L$(PATH_LIB) -l$(LIB) $(SRCS_PUSH) -o $(NAME_PUSH)
+	@$(CC) $(CFLAGS) -l$(LIB) $(SRCS_PUSH) -L$(PATH_LIB) -o $(NAME_PUSH)
 
 $(NAME_CHECK) : 
-	@$(CC) $(CFLAGS) -L$(PATH_LIB) -l$(LIB) $(SRCS_CHECK) -o $(NAME_CHECK)
+	@$(CC) $(CFLAGS) -l$(LIB) $(SRCS_CHECK) -L$(PATH_LIB) -o $(NAME_CHECK)
 
 clean : 
 	@$(RM) $(NAME_CHECK)

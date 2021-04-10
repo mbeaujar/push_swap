@@ -103,6 +103,7 @@ void	read_stdin(t_stack *a, t_bonus *options)
 			error(0);
 		}
 		is_bonus(a, b, options, ret);
+		free(str);
 	}
 	check_valid(a, b);
 }

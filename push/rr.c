@@ -38,7 +38,7 @@ void	freelists(t_var *var)
 	i = 0;
 	if (var->a)
 	{
-		while (i < var->size_a - 1)
+		while (i < var->size_a)
 		{
 			tmp = var->a;
 			var->a = var->a->next;
@@ -49,7 +49,7 @@ void	freelists(t_var *var)
 	i = 0;
 	if (var->b)
 	{
-		while (i < var->size_b - 1)
+		while (i < var->size_b)
 		{
 			tmp = var->b;
 			var->b = var->b->next;

@@ -21,10 +21,10 @@ $(NAME_PUSH) :
 ifeq ("$(wildcard $(FILE_LIB))","")
 	@make -C libft
 endif
-	@$(CC) $(CFLAGS) -l$(LIB) $(SRCS_PUSH) -L$(PATH_LIB) -o $(NAME_PUSH)
+	@$(CC) $(CFLAGS)  $(SRCS_PUSH) -l$(LIB) -L$(PATH_LIB) -o $(NAME_PUSH)
 
 $(NAME_CHECK) : 
-	@$(CC) $(CFLAGS) -l$(LIB) $(SRCS_CHECK) -L$(PATH_LIB) -o $(NAME_CHECK)
+	@$(CC) $(CFLAGS)  $(SRCS_CHECK) -l$(LIB) -L$(PATH_LIB) -o $(NAME_CHECK)
 
 clean : 
 	@$(RM) $(NAME_CHECK)

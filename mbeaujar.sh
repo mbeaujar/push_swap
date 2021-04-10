@@ -17,10 +17,10 @@ if [ -f error.log ]; then
 fi
 
 if [ ! -f ./push_swap ]; then
-	echo "${RED}File push_swap does not exist${NC}"
+	printf "${RED}File push_swap does not exist${NC}\n"
 	exit 1
 elif [ ! -f ./checker ]; then
-	echo "${RED}File checker does not exist${NC}"
+	printf "${RED}File checker does not exist${NC}\n"
 	exit 1
 fi
 
@@ -40,15 +40,15 @@ display_note()
         T=11500
     fi
     if [ $1 -lt $A ]; then 
-        echo "${GREEN}NOTE : ${GREEN}5${NC}"
+        printf "${GREEN}NOTE : ${GREEN}5${NC}\n"
     elif [ $1 -lt $Z ]; then 
-        echo "${GREEN}NOTE : ${YELLOW}4${NC}"
+        printf "${GREEN}NOTE : ${YELLOW}4${NC}\n"
     elif [ $1 -lt $E ]; then 
-        echo "${GREEN}NOTE : ${YELLOW}3${NC}"
+        printf "${GREEN}NOTE : ${YELLOW}3${NC}\n"
     elif [ $1 -lt $R ]; then
-        echo "${GREEN}NOTE : ${RED}2${NC}"
+        printf "${GREEN}NOTE : ${RED}2${NC}\n"
     elif [ $1 -lt $T ]; then
-        echo "${GREEN}NOTE : ${RED}1${NC}"
+        printf "${GREEN}NOTE : ${RED}1${NC}\n"
     else
         echo "${GREEN}NOTE : ${RED}0${NC}"
     fi
@@ -56,13 +56,13 @@ display_note()
 
 clear
 
-echo ${GREEN}
+printf ${GREEN}
 echo " ______________________________________ "
 echo "|                                      |"
 echo "|              TEST ERROR              |"
 echo "|______________________________________|"
-echo ${NC}
-
+printf ${NC}
+printf "\n"
 MSG_ERROR=0
 
 printf "${GREEN}Error : ${NC}"
@@ -101,13 +101,15 @@ if [ $MSG_ERROR -gt 0 ]; then
 	echo "Error file : error.log"
 fi
 
-echo ${GREEN}
+
+
+printf ${GREEN}
 echo " ______________________________________ "
 echo "|                                      |"
 echo "|              TEST FOR 100            |"
 echo "|______________________________________|"
-echo ${NC}
-
+printf ${NC}
+printf "\n"
 
 ##### DEFINES VARIABLES #####
 
@@ -178,41 +180,41 @@ SUM=$(($SUM / 100))
 
 if [ $RESULTAT -eq 100 ]
 then
-	echo "${GREEN}Score : ${GREEN}$RESULTAT${GREEN}/100${NC}"
+	printf "${GREEN}Score : ${GREEN}$RESULTAT${GREEN}/100${NC}\n"
 else
-	echo "${GREEN}Score : ${RED}$RESULTAT${GREEN}/100${NC}"
-	echo "Failed test > error.log"
+	printf "${GREEN}Score : ${RED}$RESULTAT${GREEN}/100${NC}\n"
+	printf "Failed test > error.log\n"
 fi
 
 display_note $MAX 100
 echo ""
-echo "${GREEN}Stats : ${NC}"
-echo "${YELLOW}MIN : ${NC}$MIN"
-echo "${YELLOW}AVERAGE : ${NC}$SUM"
-echo "${YELLOW}MAX : ${NC}$MAX"
+printf "${GREEN}Stats : ${NC}\n"
+printf "${YELLOW}MIN : ${NC}$MIN\n"
+printf "${YELLOW}AVERAGE : ${NC}$SUM\n"
+printf "${YELLOW}MAX : ${NC}$MAX\n"
 echo ""
-echo "${GREEN}percentage of instructions : ${NC}"
-echo "${YELLOW}PA : ${NC}$PA%"
-echo "${YELLOW}PB : ${NC}$PB%"
-echo "${YELLOW}SA : ${NC}$SA%"
-echo "${YELLOW}SB : ${NC}$SB%"
-echo "${YELLOW}SS : ${NC}$SS%"
-echo "${YELLOW}RA : ${NC}$RA%"
-echo "${YELLOW}RB : ${NC}$RB%"
-echo "${YELLOW}RR : ${NC}$RR%"
-echo "${YELLOW}RRA : ${NC}$RRA%"
-echo "${YELLOW}RRB : ${NC}$RRB%"
-echo "${YELLOW}RRR : ${NC}$RRR%"
+printf "${GREEN}percentage of instructions : ${NC}\n"
+printf "${YELLOW}PA : ${NC}$PA\n"
+printf "${YELLOW}PB : ${NC}$PB\n"
+printf "${YELLOW}SA : ${NC}$SA\n"
+printf "${YELLOW}SB : ${NC}$SB\n"
+printf "${YELLOW}SS : ${NC}$SS\n"
+printf "${YELLOW}RA : ${NC}$RA\n"
+printf "${YELLOW}RB : ${NC}$RB\n"
+printf "${YELLOW}RR : ${NC}$RR\n"
+printf "${YELLOW}RRA : ${NC}$RRA\n"
+printf "${YELLOW}RRB : ${NC}$RRB\n"
+printf "${YELLOW}RRR : ${NC}$RRR\n"
 
 rm -rf tester_100.txt
 
-echo ${GREEN}
+printf ${GREEN}
 echo " ______________________________________ "
 echo "|                                      |"
 echo "|              TEST FOR 500            |"
 echo "|______________________________________|"
-echo ${NC}
-
+printf ${NC}
+printf "\n"
 ##### DEFINES VARIABLES #####
 
 # percent instructions
@@ -279,31 +281,30 @@ SUM=$(($SUM / 100))
 
 if [ $RESULTAT -eq 100 ]
 then
-	echo "${GREEN}Score : ${GREEN}$RESULTAT${GREEN}/100${NC}"
+	printf "${GREEN}Score : ${GREEN}$RESULTAT${GREEN}/100${NC}\n"
 else
-	echo "${GREEN}Score : ${RED}$RESULTAT${GREEN}/100${NC}"
-	echo "Failed test > error.log"
+	printf "${GREEN}Score : ${RED}$RESULTAT${GREEN}/100${NC}\n"
+	printf "Failed test > error.log\n"
 fi
 
 display_note $MAX 500
 echo ""
-echo "${GREEN}Stats : ${NC}"
-echo "${YELLOW}MIN : ${NC}$MIN"
-echo "${YELLOW}AVERAGE : ${NC}$SUM"
-echo "${YELLOW}MAX : ${NC}$MAX"
-echo "${YELLOW}TIME FOR 1 TEST : ${NC}$TIME seconds"
+printf "${GREEN}Stats : ${NC}\n"
+printf "${YELLOW}MIN : ${NC}$MIN\n"
+printf "${YELLOW}AVERAGE : ${NC}$SUM\n"
+printf "${YELLOW}MAX : ${NC}$MAX\n"
 echo ""
-echo "${GREEN}percentage of instructions : ${NC}"
-echo "${YELLOW}PA : ${NC}$PA%"
-echo "${YELLOW}PB : ${NC}$PB%"
-echo "${YELLOW}SA : ${NC}$SA%"
-echo "${YELLOW}SB : ${NC}$SB%"
-echo "${YELLOW}SS : ${NC}$SS%"
-echo "${YELLOW}RA : ${NC}$RA%"
-echo "${YELLOW}RB : ${NC}$RB%"
-echo "${YELLOW}RR : ${NC}$RR%"
-echo "${YELLOW}RRA : ${NC}$RRA%"
-echo "${YELLOW}RRB : ${NC}$RRB%"
-echo "${YELLOW}RRR : ${NC}$RRR%"
+printf "${GREEN}percentage of instructions : ${NC}\n"
+printf "${YELLOW}PA : ${NC}$PA\n"
+printf "${YELLOW}PB : ${NC}$PB\n"
+printf "${YELLOW}SA : ${NC}$SA\n"
+printf "${YELLOW}SB : ${NC}$SB\n"
+printf "${YELLOW}SS : ${NC}$SS\n"
+printf "${YELLOW}RA : ${NC}$RA\n"
+printf "${YELLOW}RB : ${NC}$RB\n"
+printf "${YELLOW}RR : ${NC}$RR\n"
+printf "${YELLOW}RRA : ${NC}$RRA\n"
+printf "${YELLOW}RRB : ${NC}$RRB\n"
+printf "${YELLOW}RRR : ${NC}$RRR\n"
 
 rm -rf tester_500.txt

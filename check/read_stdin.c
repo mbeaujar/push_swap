@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -70,7 +71,7 @@ void	check_valid(t_stack *a, t_stack *b)
 		eval(a, b, 0);
 	if (a->next == NULL)
 		eval(a, b, 1);
-	while (begin->next->next != NULL)
+	while (begin->next != NULL)
 	{
 		if (begin->data < begin->next->data)
 			eval(a, b, 0);

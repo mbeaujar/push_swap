@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 20:43:04 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/14 23:32:37 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/16 22:00:41 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	error(int error)
 {
-	ft_printf("Error\n");
+	ft_putstr_fd("Error\n", 1);
 	exit(error);
 }
 
@@ -86,7 +86,7 @@ t_stack	*parsing(int argc, char **argv, t_bonus *options)
 	int		nb;
 
 	if (argc == 1)
-		error(1);
+		exit(1);
 	i = enable_flags(argv, options);
 	empty_string(argc, argv);
 	head = lstnew(recup_nb(argv[i++], NULL));

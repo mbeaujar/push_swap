@@ -18,9 +18,7 @@ RM = rm -f
 all : $(NAME_PUSH) $(NAME_CHECK)
 
 $(NAME_PUSH) :
-ifeq ("$(wildcard $(FILE_LIB))","")
 	@make -C libft
-endif
 	@$(CC) $(CFLAGS)  $(SRCS_PUSH) -l$(LIB) -L$(PATH_LIB) -o $(NAME_PUSH)
 
 $(NAME_CHECK) : 
@@ -31,6 +29,7 @@ clean :
 	@$(RM) $(NAME_PUSH)
 
 fclean : clean 
+	@make fclean -C libft
 	
 fclean_lib : 
 	@make fclean -C $(PATH_LIB)

@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:59:02 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/05 19:34:49 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/15 19:24:38 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	markup_head(t_var *var, int (*markup_fct)(t_stack *, t_stack *))
 	t_stack	*a;
 
 	i = 0;
+	nb_keep = 0;
 	if (var->a && markup_fct)
 	{
 		a = var->a;

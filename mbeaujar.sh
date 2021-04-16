@@ -67,7 +67,7 @@ MSG_ERROR=0
 
 printf "${GREEN}Error : ${NC}"
 touch endline.txt
-error=("-2147483649 1" "2147483648 2" "1000000000000 5" "1 2 4 5 2" "5 4 3 2 one")
+error=("-2147483649 1" "2147483648 2" "1000000000000 5" "1 2 4 5 2" "5 4 3 2 one" "pa" "1 p" "p")
 for error in "${error[@]}"
 do
 	if ./checker $error < endline.txt | grep -q -E "KO|Error"; then
@@ -293,6 +293,7 @@ printf "${GREEN}Stats : ${NC}\n"
 printf "${YELLOW}MIN : ${NC}$MIN\n"
 printf "${YELLOW}AVERAGE : ${NC}$SUM\n"
 printf "${YELLOW}MAX : ${NC}$MAX\n"
+printf "${YELLOW}TIME : ${NC}$TIME\n"
 echo ""
 printf "${GREEN}percentage of instructions : ${NC}\n"
 printf "${YELLOW}PA : ${NC}$PA\n"

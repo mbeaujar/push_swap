@@ -6,11 +6,18 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:11:25 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/04 22:44:16 by beaujardm        ###   ########.fr       */
+/*   Updated: 2021/04/16 14:10:22 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
+
+void	ft_putstr_endl(char *str)
+{
+	while (*str)
+		write(1, str++, 1);
+	write(1, "\n", 1);
+}
 
 void	lstcpy(int *sorted, t_stack *a, int size)
 {

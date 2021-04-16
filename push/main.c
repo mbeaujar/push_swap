@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:10 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/07 16:54:00 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/16 14:09:54 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	compare_resultat_part2(t_ope *cmd_gt,
 		if (options->c && cmd_gt->next == NULL)
 			ft_printf("\033[1;31m%s\033[0m\n", cmd_gt->name);
 		else
-			ft_printf("%s\n", cmd_gt->name);
+			ft_putstr_endl(cmd_gt->name);
 		tmp = cmd_gt;
 		cmd_gt = cmd_gt->next;
 		free(tmp);
@@ -66,7 +66,7 @@ void	compare_resultat(t_ope *cmd_gt, t_ope *cmd_index, t_bonus *options)
 			if (options->c && cmd_index->next == NULL)
 				ft_printf("\033[1;31m%s\033[0m\n", cmd_index->name);
 			else
-				ft_printf("%s\n", cmd_index->name);
+				ft_putstr_endl(cmd_index->name);
 			tmp = cmd_index;
 			cmd_index = cmd_index->next;
 			free(tmp);

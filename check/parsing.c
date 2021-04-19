@@ -58,7 +58,7 @@ int		recup_nb(char *arg, t_stack *begin)
 	}
 	if (i > 11)
 		error_free(1, begin);
-	if (nb > 2147483647 || nb < -2147483648)
+	if ((nb * sign) > 2147483647 || (nb * sign) < -2147483648)
 		error_free(2, begin);
 	return (nb * sign);
 }

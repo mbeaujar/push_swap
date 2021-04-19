@@ -99,6 +99,7 @@ void	read_stdin(t_stack *a, t_bonus *options)
 		}
 		if (ret && check_instructions(str, &a, &b) == 0)
 		{
+			free(str);
 			freelist(a);
 			freelist(b);
 			error(0);

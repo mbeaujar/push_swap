@@ -56,7 +56,7 @@ char		*next_line_buff(char *save)
 		return (0);
 	while (save[i] && save[i] != '\n')
 		i++;
-	if (!save[i])
+	if (!save[i] || ft_strlen_gnl(save) - i <= 1)
 	{
 		free(save);
 		return (0);

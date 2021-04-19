@@ -17,10 +17,10 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
-# define MAX_FD 2147483647
+# define MAX_FD 5
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 1
 
 # endif
 

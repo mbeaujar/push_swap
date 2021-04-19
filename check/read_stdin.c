@@ -33,6 +33,8 @@ int		check_instructions(char *str, t_stack **a, t_stack **b)
 	int check;
 
 	check = 0;
+	if (str[0] == 0)
+		return (1);
 	if (ft_strncmp(str, "sa", 5) == 0)
 		sa(a, &check);
 	if (ft_strncmp(str, "sb", 5) == 0)
@@ -97,8 +99,9 @@ void	read_stdin(t_stack *a, t_bonus *options)
 				freelist(b);
 			error(1);
 		}
-		if (ret && check_instructions(str, &a, &b) == 0)
+		if (check_instructions(str, &a, &b) == 0)
 		{
+			ft_putchar_fd(ret == 0 ? '\n' : '\0', 0);
 			free(str);
 			freelist(a);
 			freelist(b);

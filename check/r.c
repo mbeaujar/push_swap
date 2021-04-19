@@ -6,11 +6,19 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 14:53:20 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/07 16:47:29 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/19 21:41:38 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/checker.h"
+
+void	quit_free(char *str, int ret, t_stack *a, t_stack *b)
+{
+	ft_putchar_fd(ret == 0 ? '\n' : '\0', 0);
+	free(str);
+	freelist(a);
+	freelist(b);
+}
 
 void	ra(t_stack **a, int *check)
 {

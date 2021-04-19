@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:26:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/08 16:05:29 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/19 21:43:04 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +100,7 @@ void	read_stdin(t_stack *a, t_bonus *options)
 		}
 		if (check_instructions(str, &a, &b) == 0)
 		{
-			ft_putchar_fd(ret == 0 ? '\n' : '\0', 0);
-			free(str);
-			freelist(a);
-			freelist(b);
+			quit_free(str, ret, a, b);
 			error(0);
 		}
 		is_bonus(a, b, options, ret);

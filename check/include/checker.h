@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 20:35:02 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/08 16:15:17 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/19 21:41:52 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void			rrr(t_stack **a, t_stack **b, int *check);
 void			empty_string(int argc, char **argv);
 int				enable_flags(char **argv, t_bonus *options);
 void			is_bonus(t_stack *a, t_stack *b, t_bonus *options, int ret);
+void			quit_free(char *str, int ret, t_stack *a, t_stack *b);
 
 #endif

@@ -67,7 +67,7 @@ MSG_ERROR=0
 
 printf "${GREEN}Error : ${NC}"
 touch endline.txt
-error=("-2147483649 1" "2147483648 2" "1000000000000 5" "1 2 4 5 2" "5 4 3 2 one" "pa" "1 p" "p")
+error=("-2147483649 1" "2147483648 2" "1000000000000 5" "1 2 4 5 2" "5 4 3 2 one" "pa" "1 p" "p" "10000000000000000000000000000" "0 00")
 for error in "${error[@]}"
 do
 	if ./checker $error < endline.txt | grep -q -E "KO|Error"; then
@@ -82,12 +82,46 @@ do
 	printf " "
 done
 
-if echo "saa" > endline.txt && ./checker 2 1 3 4 5 < endline.txt | grep -q -E "KO|Error"; then
+if ./checker 0 "" < endline.txt | grep -q -E "Error"; then
 	printf "${GREEN}[OK]${NC}"
 else
 	printf "${RED}[KO]${NC}"
 	echo "/!\\ TEST FAILED /!\\" >> error.log
-	echo "ARG : '$error'" >> error.log
+	echo "ARG : '0 \"\"'" >> error.log
+	echo "test returned : [KO]" >> error.log
+	MSG_ERROR=$(($MSG_ERROR + 1))
+fi
+printf " "
+
+if echo "saa" > endline.txt && ./checker 2 1 3 4 5 < endline.txt | grep -q -E "Error"; then
+	printf "${GREEN}[OK]${NC}"
+else
+	printf "${RED}[KO]${NC}"
+	echo "/!\\ TEST FAILED /!\\" >> error.log
+	echo "INSTRUCTION : 'saa'" >> error.log
+	echo "test returned : [KO]" >> error.log
+	MSG_ERROR=$(($MSG_ERROR + 1))
+fi
+printf " "
+
+if ! ./push_swap 010 | grep -q -E "Error"; then
+	printf "${GREEN}[OK]${NC}"
+else
+	printf "${RED}[KO]${NC}"
+	echo "/!\\ TEST FAILED /!\\" >> error.log
+	echo "ARG : '010'" >> error.log
+	echo "test returned : [KO]" >> error.log
+	MSG_ERROR=$(($MSG_ERROR + 1))
+fi
+printf " "
+ARG=-00000000000000000000000000010
+
+if ! ./push_swap $ARG | grep -q -E "Error"; then
+	printf "${GREEN}[OK]${NC}"
+else
+	printf "${RED}[KO]${NC}"
+	echo "/!\\ TEST FAILED /!\\" >> error.log
+	echo "ARG : '$ARG'" >> error.log
 	echo "test returned : [KO]" >> error.log
 	MSG_ERROR=$(($MSG_ERROR + 1))
 fi
@@ -108,6 +142,7 @@ echo " ______________________________________ "
 echo "|                                      |"
 echo "|              TEST FOR 100            |"
 echo "|______________________________________|"
+printf "\nTesting ...\n"
 printf ${NC}
 printf "\n"
 
@@ -213,6 +248,7 @@ echo " ______________________________________ "
 echo "|                                      |"
 echo "|              TEST FOR 500            |"
 echo "|______________________________________|"
+printf "\nTesting ...\n"
 printf ${NC}
 printf "\n"
 ##### DEFINES VARIABLES #####
@@ -293,7 +329,12 @@ printf "${GREEN}Stats : ${NC}\n"
 printf "${YELLOW}MIN : ${NC}$MIN\n"
 printf "${YELLOW}AVERAGE : ${NC}$SUM\n"
 printf "${YELLOW}MAX : ${NC}$MAX\n"
-printf "${YELLOW}TIME : ${NC}$TIME\n"
+printf "${YELLOW}LONGEST TIME : ${NC}$TIME "
+if [ $TIME -gt 1 ]; then
+	printf "seconds \n"
+else
+	printf "second \n"
+fi
 echo ""
 printf "${GREEN}percentage of instructions : ${NC}\n"
 printf "${YELLOW}PA : ${NC}$PA\n"

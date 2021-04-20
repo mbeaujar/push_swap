@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:35:40 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/14 23:32:45 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/20 16:19:11 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	error_free(int error, t_stack *begin)
 	exit(error);
 }
 
-int		recup_nb(char *arg, t_stack *begin)
+int recup_nb(char *arg, t_stack *begin)
 {
-	int			i;
-	long long	nb;
-	int			sign;
+	int i;
+	long long nb;
+	int sign;
 
 	i = 0;
 	nb = 0;
@@ -52,12 +52,14 @@ int		recup_nb(char *arg, t_stack *begin)
 		error_free(3, begin);
 	if (arg[i] == '-' && ++i)
 		sign = -1;
+	while (arg[i] == '0')
+		i++;
 	while (arg[i])
 	{
 		nb = (nb) * 10 + (arg[i] - 48);
 		i++;
 	}
-	if (i > 11)
+	if (check_len(arg) > 11)
 		error_free(1, begin);
 	if ((nb * sign) > 2147483647 || (nb * sign) < -2147483648)
 		error_free(2, begin);

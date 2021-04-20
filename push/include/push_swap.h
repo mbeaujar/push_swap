@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:19:37 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/16 14:09:35 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/20 16:18:50 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ void			iq200(t_ope *cmd, int argc, char **argv, t_ope *free_cmd);
 void			setup(t_var *var, int argc, char **argv, t_bonus *options);
 void			param_struct(t_var *var);
 void			ft_putstr_endl(char *str);
+int				check_len(char *str);
 
 #endif

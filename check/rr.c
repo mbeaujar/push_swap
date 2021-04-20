@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 14:53:54 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/06 17:47:04 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/20 16:08:50 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,23 @@ void	rrr(t_stack **a, t_stack **b, int *check)
 {
 	rra(a, check);
 	rrb(b, check);
+}
+
+int check_len(char *str)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	if (str[i] == '-')
+		i++;
+	while (str[i] == '0')
+		i++;
+	while (str[i])
+	{
+		i++;
+		count++;
+	}
+	return (count);
 }

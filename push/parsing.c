@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:35:40 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/20 16:19:11 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/21 01:17:05 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	error_free(int error, t_stack *begin)
 	exit(error);
 }
 
-int recup_nb(char *arg, t_stack *begin)
+int		recup_nb(char *arg, t_stack *begin)
 {
-	int i;
-	long long nb;
-	int sign;
+	int			i;
+	long long	nb;
+	int			sign;
 
 	i = 0;
 	nb = 0;

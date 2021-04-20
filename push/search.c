@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 23:03:32 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/04/20 16:18:37 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/04/21 01:16:30 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	refresh_dir(t_dir *dir)
 	dir->len_b = 0;
 }
 
-int check_len(char *str)
+int		check_len(char *str)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;

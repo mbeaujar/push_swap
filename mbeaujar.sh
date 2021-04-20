@@ -176,7 +176,7 @@ for i in {1..100}
 do
     export ARG=$(ruby -e "puts (1..100).to_a.shuffle.join(' ')")
     ./push_swap $ARG > tester_100.txt
-    if ./checker $ARG < tester_100.txt | grep -q "KO"; then 
+    if ./checker $ARG < tester_100.txt | grep -q -E "Error|KO"; then 
         echo "/!\\ TEST FAILED /!\\" >> error.log
         echo "ARG : " $ARG >> error.log
         echo "test returned : [KO]" >> error.log
@@ -282,7 +282,7 @@ do
 	if [ $(($TIME_END-$TIME_START)) -gt $TIME ]; then
 		TIME=$(($TIME_END-$TIME_START))
 	fi
-    if ./checker $ARG < tester_500.txt | grep -q "KO"; then 
+    if ./checker $ARG < tester_500.txt | grep -q -E "Error|KO"; then 
         echo "/!\\ TEST FAILED /!\\" >> error.log
         echo "ARG : " $ARG >> error.log
         echo "test returned : [KO]" >> error.log
